@@ -45,15 +45,18 @@ class BrowserMiddleware(object):
         Modify template/s to render based on device mode and returns response
         """
 
-        t = response.template_name
-
-        print "orig templates: %s" % t
+        orig_template_name = response.template_name
+        new_template_name = []
 
         if request.responsive_mode in ('m', 't'):
-            if isinstance(t, (list, tuple)):
-                t = list(t)
+            if isinstance(orig_template_name, (list, tuple)):
+                orig_template_name = list(orig_template_name)
 
-            response.template_name = "%s-%s" % (request.responsive_mode, response.template_name)
+            for t in orig_template_name:
+                base_name = t.split('/')[-1]
+                new_template_name.append(t.replace(base_name, '%s-%s' % (request.responsive_mode, base_name)))
+
+            response.template_name = new_template_name
 
         return response
 
