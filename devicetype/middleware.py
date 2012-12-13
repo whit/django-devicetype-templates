@@ -34,7 +34,7 @@ class DeviceTypeMiddleware(object):
             return None
 
         request.devicetype = check_browser(request.META['HTTP_USER_AGENT'])
-        request.is_mobile = request.responsive_mode != 'desktop'
+        request.is_mobile = request.devicetype != 'desktop'
 
         return None
 
