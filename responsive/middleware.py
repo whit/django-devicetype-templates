@@ -1,13 +1,14 @@
-import time
-from django.conf import settings
 import logging
+import time
 
+from django.conf import settings
+from django.utils.http import cookie_date
+
+from responsive import conf
 from responsive.browser import check_browser
 
-DEFAULT_COOKIE_MAX_AGE = 60 * 60 * 4
 
-
-class BrowserMiddleware(object):
+class DeviceTypeMiddleware(object):
     """
     """
 
@@ -15,50 +16,68 @@ class BrowserMiddleware(object):
         self.log = logging.getLogger(self.__class__.__name__)
 
     def process_request(self, request):
-        # test force cookie first
-        cookie = request.COOKIES.get('responsive_mode', None)
 
-        if cookie in ('m', 't', 'b'):
-            request.responsive_mode = cookie
+        # force switch link
+        if 'devicetype' in request.GET and request.GET['devicetype'] in conf.DEVICE_TYPES:
+            request.devicetype = request.GET['devicetype']
+            return None
+
+        # test saved cookie
+        cookie = request.COOKIES.get('devicetype', None)
+
+        if cookie in conf.DEVICE_TYPES:
+            request.devicetype = cookie
             return None
 
         # test for mobile browser
         if not 'HTTP_USER_AGENT' in request.META:
             return None
-        request.responsive_mode = check_browser(request.META['HTTP_USER_AGENT'])
-        request.is_mobile = True
+
+        request.devicetype = check_browser(request.META['HTTP_USER_AGENT'])
+        request.is_mobile = request.responsive_mode != 'desktop'
+
         return None
-
-    """
-
-            # set cookie to identify the browser as mobile
-            max_age = getattr(settings, 'MOBILE_COOKIE_MAX_AGE', DEFAULT_COOKIE_MAX_AGE)
-            expireses_time = time.time() + max_age
-            expires = cookie_date(expires_time)
-            response.set_cookie('ismobile', '1', domain=settings.SESSION_COOKIE_DOMAIN, max_age=max_age, expires=expires)
-            return response
-
-    """
 
     def process_template_response(self, request, response):
         """
-        Modify template/s to render based on device mode and returns response
+        Modify template path(s) to render based on device mode and returns response
         """
 
         orig_template_name = response.template_name
         new_template_name = []
 
-        if request.responsive_mode in ('m', 't'):
+        if request.devicetype in conf.DEVICE_TYPES and conf.TEMPLATE_PREFIX[request.devicetype]:
             if isinstance(orig_template_name, (list, tuple)):
                 orig_template_name = list(orig_template_name)
 
             for t in orig_template_name:
                 base_name = t.split('/')[-1]
-                new_template_name.append(t.replace(base_name, '%s-%s' % (request.responsive_mode, base_name)))
+                new_template_name.append(t.replace(base_name, '%s%s' % (conf.TEMPLATE_PREFIX[request.devicetype], base_name)))
 
+            new_template_name.extend(orig_template_name)
             response.template_name = new_template_name
 
+        # set cookie to identify the browser as mobile
+        expires_time = time.time() + conf.DEVICE_TYPE_COOKIE_MAXAGE
+        expires = cookie_date(expires_time)
+        response.set_cookie('devicetype', request.devicetype, domain=settings.SESSION_COOKIE_DOMAIN,
+                            max_age=conf.DEVICE_TYPE_COOKIE_MAXAGE, expires=expires)
+
         return response
+
+#    def process_response(self, request, response):
+#
+#        # set cookie to identify the browser as mobile
+#        expires_time = time.time() + DEFAULT_COOKIE_MAX_AGE
+#        expires = cookie_date(expires_time)
+#        response.set_cookie('devicetype', request.devicetype, domain=settings.SESSION_COOKIE_DOMAIN,
+#            max_age=DEFAULT_COOKIE_MAX_AGE, expires=expires)
+#
+#        # remove force get parameter
+#        if 'devicetype' in request.GET:
+#            return HttpResponseRedirect(request.META['PATH_INFO'])
+#
+#        return response
 
 
 class RedirectMiddleware:

@@ -1,5 +1,7 @@
-def responsive_mode(request):
+def devicetype(request):
     return {
-        'responsive_mode': getattr(request, 'responsive_mode', 'b'),
-        'is_mobile': getattr(request, 'is_mobile', False)
+        'devicetype': getattr(request, 'devicetype', 'desktop'),
+        'is_mobile': getattr(request, 'is_mobile', False),
+        # TODO: detect tablet with big resolution displays
+        'big_resolution': False,
     }

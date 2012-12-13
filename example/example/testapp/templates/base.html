@@ -1,3 +1,10 @@
 {% block content %}
-
 {% endblock %}
+
+<div>
+<p>ua string: {{ request.META.HTTP_USER_AGENT }}</p>
+<p>cookie devicetype: {{ request.COOKIES.devicetype }}</p>
+<p>Force swith: <a href="./?devicetype=tablet">tablet</a> | <a href="./?devicetype=mobile">mobile</a> | <a href="./?devicetype=desktop">desktop</a></p>
+</div>
+
+{{ request }}
