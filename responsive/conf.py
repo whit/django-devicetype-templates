@@ -5,5 +5,5 @@ MOBILE_PATTERNS = getattr(settings, 'RESPONSIVE_MOBILE_PATTERNS', ('iphone',
     'opera mini', 'opera mobile', 'palm', 'ipad',)
 )
 TABLET_PATTERNS = getattr(settings, 'RESPONSIVE_TABLET_PATTERNS', ('ipad',
-    'android 3', )
+    'android 3')
 )
