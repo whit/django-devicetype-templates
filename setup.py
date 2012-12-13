@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-import responsive
+import devicetype
 
 install_requires = [
     'setuptools>=0.6b1',
@@ -14,14 +14,14 @@ tests_require = [
 long_description = open('README.rst').read()
 
 setup(
-    name='Django-Responsive',
-    version=responsive.__versionstr__,
-    description='Django library to detect mobile/tablet browsers',
+    name='django-devicetype-templates',
+    version=devicetype.__versionstr__,
+    description='Django library to server different templates by detected device type',
     long_description=long_description,
     author='Vitek Pliska',
     author_email='whit@jizak.cz',
     license='BSD License',
-    url='http://www.github.com/whit/django-responsive',
+    url='http://www.github.com/whit/django-devicetype-templates',
 
     packages=find_packages(
         where='.',

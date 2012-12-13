@@ -94,7 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'responsive.middleware.DeviceTypeMiddleware',
+    'devicetype.middleware.DeviceTypeMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -118,7 +118,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    "responsive.context_processors.devicetype",
+    "devicetype.context_processors.devicetype",
     "django.core.context_processors.request",
 )
 
@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'responsive',
+    'devicetype',
     'example.testapp',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',

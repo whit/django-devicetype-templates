@@ -4,8 +4,8 @@ import time
 from django.conf import settings
 from django.utils.http import cookie_date
 
-from responsive import conf
-from responsive.browser import check_browser
+from devicetype import conf
+from devicetype.browser import check_browser
 
 
 class DeviceTypeMiddleware(object):

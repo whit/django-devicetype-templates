@@ -1,4 +1,4 @@
-from responsive.conf import MOBILE_PATTERNS, TABLET_PATTERNS
+from devicetype.conf import MOBILE_PATTERNS, TABLET_PATTERNS
 
 
 def check_browser(ua_string):
