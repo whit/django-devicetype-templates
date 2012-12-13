@@ -16,7 +16,7 @@ long_description = open('README.rst').read()
 setup(
     name='django-devicetype-templates',
     version=devicetype.__versionstr__,
-    description='Django library to server different templates by detected device type',
+    description='Django library to serve different templates for diferent device types',
     long_description=long_description,
     author='Vitek Pliska',
     author_email='whit@jizak.cz',
