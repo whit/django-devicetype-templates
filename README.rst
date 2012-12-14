@@ -1,6 +1,51 @@
 django-devicetype-templates
 ===========================
 
-django-devicetype-templates is a library that detect device type
-by browser's user agent string and serves different templates
-for each type.
+django-devicetype-templates is a library that detect device type by browser's user agent string
+and serves different templates for each type.
+
+
+Requirements
+------------
+
+    * Django >= 1.3
+    * It uses `process_template_response`_ middleware method, so your views should returns `TemplateResponse`.
+
+
+Installation
+------------
+
+Install from PyPi::
+
+    pip install django-devicetype-templates
+
+
+Install development version to virtualenv::
+
+    git clone https://bitbucket.org/whit/django-devicetype-templates.git
+    cd django-devicetype-templates
+    python setup.py develop
+
+
+.. _process_template_response: https://docs.djangoproject.com/en/dev/topics/http/middleware/#process_template_response
+
+
+Configuration
+-------------
+
+Add middleware::
+
+    MIDDLEWARE_CLASSES = (
+        ...
+        'devicetype.middleware.DeviceTypeMiddleware',
+    )
+
+If you need to use some variables in your templates, you can add devicetype context processor::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        'devicetype.context_processors.devicetype',
+    )
+
+Then, in templates will be available these variables: `devicetype`, `is_mobile`
+and `big_resolution` (not implemented yet).
