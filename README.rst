@@ -49,3 +49,28 @@ If you need to use some variables in your templates, you can add devicetype cont
 
 Then, in templates will be available these variables: ``devicetype``, ``is_mobile``
 and ``big_resolution`` (not implemented yet).
+
+
+Other settings
+--------------
+
+``DEVICETYPE_TEMPLATE_PREFIX``
+------------------------------
+
+Prefixes are variable. When you need prefix template file name, use something like ``tablet-``. If you want to have
+device-specific templates in subfolders, you can use ``tablet/`` prefix for example.
+
+Default::
+
+    {
+        'desktop': '',
+        'mobile': 'm-',
+        'tablet': 't-',
+    }
+
+
+``DEVICETYPE_MOBILE_PATTERNS`` and ``DEVICETYPE_TABLET_PATTERNS``
+-----------------------------------------------------------------
+
+You can override default search patterns. It search in tablet patterns first.
+
