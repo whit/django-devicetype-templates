@@ -9,7 +9,7 @@ Requirements
 ------------
 
     * Django >= 1.3
-    * It uses `process_template_response`_ middleware method, so your views should returns `TemplateResponse`.
+    * It uses `process_template_response`_ middleware method, so your views should returns ``TemplateResponse``.
 
 
 Installation
@@ -47,5 +47,5 @@ If you need to use some variables in your templates, you can add devicetype cont
         'devicetype.context_processors.devicetype',
     )
 
-Then, in templates will be available these variables: `devicetype`, `is_mobile`
-and `big_resolution` (not implemented yet).
+Then, in templates will be available these variables: ``devicetype``, ``is_mobile``
+and ``big_resolution`` (not implemented yet).
