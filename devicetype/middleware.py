@@ -46,14 +46,16 @@ class DeviceTypeMiddleware(object):
         Modify template path(s) to render based on device mode and returns response
         """
 
-        orig_template_name = response.template_name
+        orig_template_name = []
         new_template_name = []
+
+        if isinstance(response.template_name, (list, tuple)):
+            orig_template_name.extend(list(response.template_name))
+        else:
+            orig_template_name.append(response.template_name)
 
         # add templates only if prefix is not empty
         if request.devicetype in conf.DEVICE_TYPES and conf.TEMPLATE_PREFIX[request.devicetype]:
-            if isinstance(orig_template_name, (list, tuple)):
-                orig_template_name = list(orig_template_name)
-
             for t in orig_template_name:
                 base_name = t.split('/')[-1]
                 new_template_name.append(t.replace(base_name, '%s%s' % (conf.TEMPLATE_PREFIX[request.devicetype], base_name)))
