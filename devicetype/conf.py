@@ -6,16 +6,14 @@ MOBILE_PATTERNS = getattr(settings, 'DEVICETYPE_MOBILE_PATTERNS', ('iphone', 'ip
 )
 TABLET_PATTERNS = getattr(settings, 'DEVICETYPE_TABLET_PATTERNS', ('ipad', 'android 3', 'tablet', 'nexus 7'))
 
-"""
-Prefixes are variable. When you need prefix template file name, use something like `tablet-`. If you want to have
-device-specific templates in subfolders, you can use `tablet/` prefix for example.
-"""
 TEMPLATE_PREFIX = getattr(settings, 'DEVICETYPE_TEMPLATE_PREFIX', {
     'desktop': '',
-    'mobile': 'm-',
-    'tablet': 't-',
+    'mobile': 'mobile/',
+    'tablet': 'tablet/',
 })
+
+PREFIX_BASENAME = getattr(settings, 'DEVICETYPE_PREFIX_BASENAME', False)
 
 DEVICE_TYPES = ('desktop', 'mobile', 'tablet')
 
-DEVICE_TYPE_COOKIE_MAXAGE = 60 * 60 * 4
+DEVICETYPE_COOKIE_MAXAGE = 60 * 60 * 4

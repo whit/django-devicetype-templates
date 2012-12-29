@@ -64,13 +64,32 @@ Default::
 
     {
         'desktop': '',
-        'mobile': 'm-',
-        'tablet': 't-',
+        'mobile': 'mobile/',
+        'tablet': 'tablet/',
     }
+
+``DEVICETYPE_PREFIX_BASENAME``
+------------------------------
+
+When you use folder-like prefix, like `tablet/` and `mobile/`, with this setting
+you can select how subfolders will be detected.
+
+With ``DEVICETYPE_PREFIX_BASENAME = False`` (default)::
+
+    tablet/base.html
+    tablet/app/app_base.html
+    tablet/layout/three-cols.html
+    ...
+
+With ``DEVICETYPE_PREFIX_BASENAME = True``::
+
+    tablet/base.html
+    app/tablet/app_base.html
+    layout/tablet/three-cols.html
+    ...
 
 
 ``DEVICETYPE_MOBILE_PATTERNS`` and ``DEVICETYPE_TABLET_PATTERNS``
 -----------------------------------------------------------------
 
 You can override default search patterns. It search in tablet patterns first.
-
