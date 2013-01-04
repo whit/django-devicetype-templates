@@ -44,16 +44,13 @@ class DeviceTypeMiddleware(object):
 
     def process_template_response(self, request, response):
         """
-        Modify template path(s) to render based on device mode and returns response
+        Modify template path(s) to render based on device type and returns response
         """
 
         key = "%s:%s" % (request.devicetype, request.META['PATH_INFO'])
         prefix = conf.TEMPLATE_PREFIX[request.devicetype]
 
-        if key in self._templates_dict:
-            new_template_name = self._templates_dict[key]
-
-        else:
+        if not key in self._templates_dict:
             orig_template_name = []
             new_template_name = []
 
