@@ -21,7 +21,7 @@ setup(
     author='Vitek Pliska',
     author_email='whit@jizak.cz',
     license='BSD License',
-    url='http://www.github.com/whit/django-devicetype-templates',
+    url='https://bitbucket.org/whit/django-devicetype-templates',
 
     packages=find_packages(
         where='.',
@@ -44,5 +44,5 @@ setup(
     ],
     install_requires=install_requires,
     tests_require=tests_require,
-    test_suite='tests.run_tests.run_all',
+    #test_suite='tests.run_tests.run_all',
 )
