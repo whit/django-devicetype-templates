@@ -22,7 +22,7 @@ Install from PyPi::
 
 Install development version to virtualenv::
 
-    git clone https://bitbucket.org/whit/django-devicetype-templates.git
+    git clone https://github.com/whit/django-devicetype-templates.git
     cd django-devicetype-templates
     python setup.py develop
 
