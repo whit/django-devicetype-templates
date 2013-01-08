@@ -3,7 +3,7 @@ import devicetype
 
 install_requires = [
     'setuptools>=0.6b1',
-    'Django>=1.3.1',
+    'Django>=1.3.1,<1.6',
 ]
 
 tests_require = [
@@ -20,8 +20,8 @@ setup(
     long_description=long_description,
     author='Vitek Pliska',
     author_email='whit@jizak.cz',
-    license='BSD License',
-    url='https://bitbucket.org/whit/django-devicetype-templates',
+    license='BSD',
+    url='https://github.com/whit/django-devicetype-templates',
 
     packages=find_packages(
         where='.',
@@ -44,5 +44,5 @@ setup(
     ],
     install_requires=install_requires,
     tests_require=tests_require,
-    #test_suite='tests.run_tests.run_all',
+    test_suite='tests.run_tests.run_all',
 )
