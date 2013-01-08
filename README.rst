@@ -4,6 +4,10 @@ django-devicetype-templates
 django-devicetype-templates is a library that detect device type by browser's user agent string
 and serves different templates for each type.
 
+If standard responsive layouts does not fit all of your needs
+and if you do not want to use some hacky template loaders with thread locals,
+you may find this library useful.
+
 
 Requirements
 ------------
@@ -26,6 +30,9 @@ Install development version to virtualenv::
     cd django-devicetype-templates
     python setup.py develop
 
+Run tests::
+
+    python setup.py test
 
 .. _process_template_response: https://docs.djangoproject.com/en/dev/topics/http/middleware/#process_template_response
 
