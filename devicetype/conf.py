@@ -15,5 +15,6 @@ TEMPLATE_PREFIX = getattr(settings, 'DEVICETYPE_TEMPLATE_PREFIX', {
 PREFIX_BASENAME = getattr(settings, 'DEVICETYPE_PREFIX_BASENAME', False)
 
 DEVICE_TYPES = ('desktop', 'mobile', 'tablet')
+DEFAULT_TYPE = 'desktop'
 
 DEVICETYPE_COOKIE_MAXAGE = 60 * 60 * 4

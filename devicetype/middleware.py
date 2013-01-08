@@ -35,9 +35,10 @@ class DeviceTypeMiddleware(object):
 
         # check type by UA string, if present
         if not 'HTTP_USER_AGENT' in request.META:
-            return None
+            request.devicetype = conf.DEFAULT_TYPE
+        else:
+            request.devicetype = check_browser(request.META['HTTP_USER_AGENT'])
 
-        request.devicetype = check_browser(request.META['HTTP_USER_AGENT'])
         request.is_mobile = request.devicetype != 'desktop'
 
         return None
