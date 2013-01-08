@@ -93,3 +93,13 @@ With ``DEVICETYPE_PREFIX_BASENAME = True``::
 -----------------------------------------------------------------
 
 You can override default search patterns. It search in tablet patterns first.
+
+
+Build status
+------------
+
+:Master branch:
+
+  .. image:: https://secure.travis-ci.org/whit/django-devicetype-templates.png?branch=master
+     :alt: Travis CI - Distributed build platform for the open source community
+     :target: http://travis-ci.org/#!/whit/django-devicetype-templates
