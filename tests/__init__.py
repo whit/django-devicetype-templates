@@ -1,6 +1,9 @@
+import os
+
 test_runner = None
 old_config = None
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
 
 def setup():
     global test_runner

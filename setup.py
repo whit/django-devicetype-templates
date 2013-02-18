@@ -44,6 +44,6 @@ setup(
     ],
     install_requires=install_requires,
     tests_require=tests_require,
-    test_suite='tests.run_tests.run_all',
+    test_suite='nose.collector',
 )
 

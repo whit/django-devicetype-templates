@@ -32,7 +32,7 @@ Install development version to virtualenv::
 
 Run tests::
 
-    python setup.py test
+    python setup.py nosetests
 
 .. _process_template_response: https://docs.djangoproject.com/en/dev/topics/http/middleware/#process_template_response
 
