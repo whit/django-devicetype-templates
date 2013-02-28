@@ -5,3 +5,5 @@
 .coverage
 nosetests.xml
 dist/
+build/
+
