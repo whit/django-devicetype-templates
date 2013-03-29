@@ -6,4 +6,5 @@
 nosetests.xml
 dist/
 build/
+.tox/
 
