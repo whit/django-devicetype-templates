@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import devicetype
 
-install_requires = [
-    'setuptools>=0.6b1',
-    'Django>=1.3.1,<1.7',
-]
+setup_requires = ['setuptools']
 
+install_requires = [
+    'Django>=1.7,<1.10',
+]
 tests_require = [
     'nose',
     'coverage',
@@ -36,14 +36,15 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Framework :: Django",
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
+    setup_requires=setup_requires,
     install_requires=install_requires,
-    tests_require=tests_require,
-    test_suite='nose.collector',
+    tests_require=tests_require
 )
 

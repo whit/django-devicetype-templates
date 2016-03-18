@@ -7,4 +7,4 @@ nosetests.xml
 dist/
 build/
 .tox/
-
+.cache/
