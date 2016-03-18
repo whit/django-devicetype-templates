@@ -12,7 +12,7 @@ env:
   - DJANGO="1.7"
   - DJANGO="1.8"
   - DJANGO="1.9"
-script: python setup.py nosetests
+script: py.test
 matrix:
     exclude:
        - python: "3.5"
