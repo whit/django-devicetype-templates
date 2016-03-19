@@ -1,4 +1,4 @@
-from devicetype.conf import MOBILE_PATTERNS, TABLET_PATTERNS
+from . import conf
 
 
 def check_browser(ua_string):
@@ -6,12 +6,12 @@ def check_browser(ua_string):
 
     ua_string = ua_string.lower()
 
-    for t in TABLET_PATTERNS:
-        if ua_string.find(t) > 0:
-            return 'tablet'
+    for t in conf.TABLET_PATTERNS:
+        if t in ua_string:
+            return conf.DEVICETYPE_TABLET
 
-    for m in MOBILE_PATTERNS:
-        if ua_string.find(m) > 0:
-            return 'mobile'
+    for m in conf.MOBILE_PATTERNS:
+        if m in ua_string:
+            return conf.DEVICETYPE_MOBILE
 
-    return 'desktop'
+    return conf.DEVICETYPE_DESKTOP

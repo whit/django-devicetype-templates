@@ -88,10 +88,19 @@ class TestDeviceTypeMiddleware(TestCase):
         resp = self.m.process_template_response(req, MockResponse())
         self.assertEqual(['tablet/test.html', 'test.html'], resp.template_name)
 
-    def test_context_processor(self):
+    def test_context_processor_tablet(self):
         req = self.rf.get('/', HTTP_USER_AGENT='Linux Android 3 Unknown Device')
         self.m.process_request(req)
 
         ctx = devicetype_context_processor(req)
-        self.assertEqual('tablet', ctx['devicetype'])
-        self.assertTrue(ctx['is_mobile'])
+        assert ctx['devicetype'] == conf.DEVICETYPE_TABLET, 'devicetype should be "%s"' % conf.DEVICETYPE_TABLET
+        assert ctx['is_tablet'] is True, 'is_tablet should be True'
+
+    def test_context_processor_mobile(self):
+        req = self.rf.get('/', HTTP_USER_AGENT='iPhone 6 superduper')
+        self.m.process_request(req)
+        print(req.COOKIES)
+
+        ctx = devicetype_context_processor(req)
+        assert ctx['devicetype'] == conf.DEVICETYPE_MOBILE, 'devicetype should be "%s"' % conf.DEVICETYPE_MOBILE
+        assert ctx['is_mobile'] is True, 'is_mobile should be True'

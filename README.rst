@@ -12,7 +12,8 @@ you may find this library useful.
 Requirements
 ------------
 
-    * Django >= 1.3
+    * Django >= 1.7
+    * Tested with Python versions 2.7, 3.3, 3.4, 3.5
     * It uses `process_template_response`_ middleware method, so your views should returns ``TemplateResponse``.
 
 
@@ -32,7 +33,8 @@ Install development version to virtualenv::
 
 Run tests::
 
-    python setup.py nosetests
+    pip intsall -r requirements-dev.txt
+    py.test
 
 .. _process_template_response: https://docs.djangoproject.com/en/dev/topics/http/middleware/#process_template_response
 
@@ -54,12 +56,19 @@ If you need to use some variables in your templates, you can add devicetype cont
         'devicetype.context_processors.devicetype',
     )
 
-Then, in templates will be available these variables: ``devicetype``, ``is_mobile``
+Then, in templates will be available these variables: ``devicetype``, ``is_mobile``, ``is_tablet``
 and ``big_resolution`` (not implemented yet).
 
 
 Other settings
 --------------
+
+``DEBUG_DEVICETYPE_NOCOOKIE``
+-----------------------------
+
+For development purposes if you want to switch user agents oftenly.
+Cookie max age wil be set to 5 seconds.
+
 
 ``DEVICETYPE_TEMPLATE_PREFIX``
 ------------------------------
