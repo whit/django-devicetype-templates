@@ -4,7 +4,7 @@ import devicetype
 setup_requires = ['setuptools']
 
 install_requires = [
-    'Django>=1.7,<1.10',
+    'Django>=1.7,<1.12',
 ]
 tests_require = [
     'nose',

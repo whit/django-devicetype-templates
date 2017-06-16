@@ -5,16 +5,20 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.utils.http import cookie_date
 
+try:
+    from django.utils.deprecation import MiddlewareMixin
+    Parent = MiddlewareMixin
+except ImportError:
+    Parent = object
+
 from . import conf
 from .browser import check_browser
 
 log = logging.getLogger(__name__)
 
 
-class DeviceTypeMiddleware(object):
-
-    def __init__(self):
-        self._templates_dict = {}
+class DeviceTypeMiddleware(Parent):
+    _templates_dict = {}
 
     def process_request(self, request):
 

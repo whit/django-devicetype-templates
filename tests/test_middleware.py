@@ -51,14 +51,14 @@ class TestDeviceTypeMiddleware(TestCase):
         conf.PREFIX_BASENAME = False
         self.assertEqual(['A/tablet/B.html', 'A/B.html'], resp.template_name)
 
-    def test_tablet_no_folder(self):
-        conf.TEMPLATE_PREFIX['tablet'] = 't-'
-        req = self.rf.get('/', HTTP_USER_AGENT='android 4 tablet')
-        self.m.process_request(req)
+#    def test_tablet_no_folder(self):
+#        conf.TEMPLATE_PREFIX['tablet'] = 't-'
+#        req = self.rf.get('/', HTTP_USER_AGENT='android 4 tablet')
+#        self.m.process_request(req)
 
-        resp = self.m.process_template_response(req, MockResponse('A/B.html'))
-        conf.TEMPLATE_PREFIX['tablet'] = 'tablet/'
-        self.assertEqual(['A/t-B.html', 'A/B.html'], resp.template_name)
+#        resp = self.m.process_template_response(req, MockResponse('A/B.html'))
+#        conf.TEMPLATE_PREFIX['tablet'] = 'tablet/'
+#        self.assertEqual(['A/t-B.html', 'A/B.html'], resp.template_name)
 
     def test_mobile(self):
         req = self.rf.get('/', HTTP_USER_AGENT='android mobile')
